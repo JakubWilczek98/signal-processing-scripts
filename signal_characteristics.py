@@ -35,18 +35,18 @@ def draw_freqs(L,M, name):
     
     fig, axs = plt.subplots(2, 1, constrained_layout=True)
     axs[0].plot(f,20*np.log10(abs(h)))
-    axs[0].set_title('Amplitude-frequency characteristics ')
-    axs[0].set_xlabel("Time [s]")
+    axs[0].set_title('Amplitude-frequency characteristic')
+    axs[0].set_xlabel("Frequency (Hz)")
     axs[0].set_ylabel("Amplitude [dB]")
     axs[0].grid()
     fig.suptitle('Characteristics of ' + name, fontsize=16)
     
     axs[1].plot(f,180*np.angle(h))
-    axs[1].set_xlabel("Time [s]")
-    axs[1].set_title('Phase-frequency characteristics ')
-    axs[1].set_ylabel("Phase")
+    axs[1].set_xlabel("Frequency (Hz)")
+    axs[1].set_title('Phase-frequency characteristic')
+    axs[1].set_ylabel("Phase (degree)")
     axs[1].grid()
-    plt.savefig('Phase-frequency characteristics' + name + ".png")
+    plt.savefig('Characteristics of ' + name + ".png")
     plt.show()
 
 if __name__ == "__main__":
