@@ -117,6 +117,7 @@ def sinusoidalny_wyprostowany_jednopolowkowo(A, time, freq ,elements):
 
 
 if __name__ == "__main__":
+
     A = 0.5
     f = 1
     fs = 50
@@ -130,17 +131,23 @@ if __name__ == "__main__":
     #prostokatny bipolarny
     prostokatny_bipolarny = prostokatny_bipolarny(A, time, f, elements)
     plt.figure(1)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, prostokatny_bipolarny)
     plt.show()
     
     #Prostokatny unipolarny z wypelnieniem 1/2
     prostokatny_unipolarny_1 = prostokatny_unipolarny_1(A, time, f, elements)
     plt.figure(2)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, prostokatny_unipolarny_1)
     plt.show()
     
     #Prostokatny unipolarny z wypelnieniem dowolonym
     plt.figure(3)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     prostokatny_unipolarny_2 = prostokatny_unipolarny_2(A, time, f, elements)
     plt.plot(time, prostokatny_unipolarny_2)
     plt.show()
@@ -148,35 +155,48 @@ if __name__ == "__main__":
     #Trojkatny bipolarny 1
     trojkatny_bipolarny_1 = trojkatny_bipolarny_1(A, time, f, elements)
     plt.figure(4)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, trojkatny_bipolarny_1)
     plt.show()
 
     #Trojkatny bipolarny 2
     trojkatny_bipolarny_2 = trojkatny_bipolarny_2(A, time, f, elements)
     plt.figure(5)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, trojkatny_bipolarny_2)
     plt.show()
 
     #Trojkatny unipolarny 1
     trojkatny_unipolarny_1 = trojkatny_unipolarny_1(A, time, f, elements)
     plt.figure(6)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, trojkatny_unipolarny_1)
     plt.show()
 
     #Trojkatny unipolarny 2
     trojkatny_unipolarny_2 = trojkatny_unipolarny_2(A, time, f, elements)
     plt.figure(7)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, trojkatny_unipolarny_2)
     plt.show()
 
     #Sinusoidalny wyprostowany dwupolowkowo
     sinusoidalny_wyprostowany_dwupolowkowo = sinusoidalny_wyprostowany_dwupolowkowo(A, time, f, elements)
     plt.figure(8)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, sinusoidalny_wyprostowany_dwupolowkowo)
     plt.show()
 
     # Sinusoidalny wyprostowany jednopolowkowo
     sinusoidalny_wyprostowany_jednopolowkowo = sinusoidalny_wyprostowany_jednopolowkowo(A, time, f, elements)
     plt.figure(9)
+    plt.xlabel("Time")
+    plt.ylabel("Amplitude")
     plt.plot(time, sinusoidalny_wyprostowany_jednopolowkowo)
     plt.show()
+
