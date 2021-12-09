@@ -19,7 +19,6 @@ def convolv(A,B):
     for k in range(newL-len(B)+1):
         for i in range(len(B)):        
             newB[l + i] = B[i]
-            print(i)
         conv.append(np.sum(newA*newB))  
         l = l + 1
         newB = np.zeros((newL,1))
