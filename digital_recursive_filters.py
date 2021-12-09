@@ -47,13 +47,27 @@ def draw_impz(B,A, name):
     axs[1].grid()
     #plt.savefig('Impulse and step response of ' + name + ".png")
     plt.show()
+
+def stability(B,A, nazwa):
+    roots_B = np.roots(B)
+    roots_A = np.roots(A)  
+    t_jednostkowe = np.arange(0,2*np.pi,2*np.pi/1000)
+    r = 1
+    x_jednostkowe = r*np.cos(t_jednostkowe)
+    y_jednostkowe = r*np.sin(t_jednostkowe)
+    plt.plot(roots_B.real,roots_B.imag, 'o')
+    plt.plot(roots_A.real,roots_B.imag, 'x')
+    plt.plot(x_jednostkowe,y_jednostkowe)
+    plt.title("Stability of " + nazwa)
+    plt.grid()
+
     
 def butter_worth_filter(N, f , fs, b_type):
     Wn = (2*f)/fs   
     B, A = scipy.signal.butter(N, Wn, b_type)
     return B, A
         
-def cheby_1_filter(N, f , fs, b_type);:
+def cheby_1_filter(N, f , fs, b_type):
     
 
 
