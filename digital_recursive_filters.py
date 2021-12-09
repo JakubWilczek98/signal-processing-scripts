@@ -38,8 +38,7 @@ def draw_impz(B,A, name):
     axs[0].set_ylabel("Amplitude")
     axs[0].grid()
     fig.suptitle('Responses of ' + name, fontsize=16)
-
-    
+  
     axs[1].stem(x, step, 'g', use_line_collection=True)
     axs[1].set_xlabel("Samples (n)")
     axs[1].set_title("Step response")
@@ -61,29 +60,71 @@ def stability(B,A, nazwa):
     plt.title("Stability of " + nazwa)
     plt.grid()
 
-    
-def butter_worth_filter(N, f , fs, b_type):
-    Wn = (2*f)/fs   
-    B, A = scipy.signal.butter(N, Wn, b_type)
+ 
+def butterworth_filter(N, f , fs, b_type): #(row, freq, freqs, s_type('low','high','bandpass','bandstop'))
+    if type(f) is not list:
+        Wn = (2*f)/fs 
+        B, A = signal.butter(N, Wn, b_type)
+    else:
+        Wn1 = (2*float(f[0]))/fs 
+        Wn2 = (2*float(f[1]))/fs
+        B, A = signal.butter(N, [Wn1, Wn2], b_type)
     return B, A
         
-def cheby_1_filter(N, f , fs, b_type):
-    
+def cheby_1_filter(N, f , fs, wave, b_type): #(row, freq, freqs, waves in dB)
+    if type(f) is not list:
+        Wn = (2*f)/fs 
+        B, A = signal.cheby1(N, wave, Wn, b_type)
+    else:
+        Wn1 = (2*float(f[0]))/fs 
+        Wn2 = (2*float(f[1]))/fs
+        B, A = signal.cheby1(N, wave, [Wn1, Wn2], b_type)
+    return B, A   
 
+def cheby_2_filter(N, f , fs, wave, b_type): #(row, freq, freqs, waves in dB)
+    if type(f) is not list:
+        Wn = (2*f)/fs 
+        B, A = signal.cheby2(N, wave, Wn, b_type)
+    else:
+        Wn1 = (2*float(f[0]))/fs 
+        Wn2 = (2*float(f[1]))/fs
+        B, A = signal.cheby2(N, wave, [Wn1, Wn2], b_type)
+    return B, A   
+
+def ellip_filter(N, f , fs, p_wave, s_wave, b_type):    
+    if type(f) is not list:
+        Wn = (2*f)/fs 
+        B, A = signal.ellip(N, p_wave, s_wave, Wn, b_type)
+    else:
+        Wn1 = (2*float(f[0]))/fs 
+        Wn2 = (2*float(f[1]))/fs
+        B, A = signal.ellip(N, p_wave, s_wave, [Wn1, Wn2], b_type)
+    return B, A
 
 if __name__ == "__main__":
-    B, A = butter_worth_filter(2, 200, 1000, 'low')
     Fs = 1000
     
     
+    B, A = butterworth_filter(2, 200, 1000, 'low')    
+    B1, A1 = cheby_1_filter(2, 200, 1000, 3, 'high')
+    B2, A2 = cheby_2_filter(4, [200, 300], 1000, 20, 'bandpass')
+    B3, A3 = ellip_filter(4, [200, 300], 1000, 3, 20, 'bandstop')
+    
+    results = np.array([[B,B1,B2,B3],[A,A1,A2,A3]])
     
     
+    names = ['Butterworth filter', 'Cheby 1 filter','Cheby 2 filter','Ellip filter']
     
+    i=0
+    for name in names: 
+        draw_freqz(results[0][i], results[1][i], Fs, names[i])  
+        draw_impz(results[0][i], results[1][i], names[i])
+        stability(results[0][i], results[1][i], names[i])
+        i +=1
+        
+   
+  
     
-    draw_impz(B, A, 'Butter_worth_filter')
-    draw_freqz(B, A, Fs, 'Butter_worth_filter')
-    
-    
-    
+        
     
     
