@@ -41,13 +41,23 @@ def draw_freqs(L,M, name):
     axs[0].grid()
     fig.suptitle('Characteristics of ' + name, fontsize=16)
     
-    axs[1].plot(f,180*np.angle(h))
+    axs[1].plot(f,180*np.angle(h)/np.pi)
     axs[1].set_xlabel("Frequency (Hz)")
     axs[1].set_title('Phase-frequency characteristic')
     axs[1].set_ylabel("Phase (degree)")
     axs[1].grid()
     plt.savefig('Characteristics of ' + name + ".png")
     plt.show()
+    
+def stability(B,A, nazwa):
+    roots_B = np.roots(B)
+    roots_A = np.roots(A)  
+    plt.plot(roots_B.real,roots_B.imag, 'o')
+    plt.plot(roots_A.real,roots_A.imag, 'x')
+    plt.title("Stability of " + nazwa)
+    plt.grid()
+    plt.show()
+    
 
 if __name__ == "__main__":
     #Data
@@ -71,12 +81,18 @@ if __name__ == "__main__":
     draw_impulse(tf_r, "Differential system")
     draw_step(tf_r, "Differential system")  
     draw_freqs(L_r,M_r, "Differential system")
+    stability(L_r, M_r, "Differential system")
+    
     
     #RLC 
-    L_rlc = np.array([1])
+    L_rlc = np.array([1, 0, 0])
     M_rlc = np.array([L*C,R*C, 1])
     tf_rlc = tf(L_rlc,M_rlc)
     draw_impulse(tf_rlc, "RLC")
     draw_step(tf_rlc, "RLC")
     draw_freqs(L_rlc, M_rlc, "RLC")
+    stability(L_rlc, M_rlc, "RLC")
+    
+    
+    
     
