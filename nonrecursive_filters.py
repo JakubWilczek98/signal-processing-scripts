@@ -14,7 +14,7 @@ def draw_freqz(B,A, Fs, name):
     axs[0].grid()
     fig.suptitle('Characteristics of ' + name, fontsize=16)
     
-    axs[1].plot(freq,180*np.angle(hz))
+    axs[1].plot(freq,180*np.angle(hz)/np.pi)
     axs[1].set_xlabel("Frequency (Hz)")
     axs[1].set_title('Phase-frequency characteristic')
     axs[1].set_ylabel("Phase (degree)")
@@ -55,10 +55,11 @@ def stability(B,A, nazwa):
     x_jednostkowe = r*np.cos(t_jednostkowe)
     y_jednostkowe = r*np.sin(t_jednostkowe)
     plt.plot(roots_B.real,roots_B.imag, 'o')
-    plt.plot(roots_A.real,roots_B.imag, 'x')
+    plt.plot(roots_A.real,roots_A.imag, 'x')
     plt.plot(x_jednostkowe,y_jednostkowe)
     plt.title("Stability of " + nazwa)
     plt.grid()
+    plt.show()
     
         
 if __name__ == "__main__":
