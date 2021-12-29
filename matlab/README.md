@@ -1,3 +1,7 @@
 Lab2:
-- generowanie basic harmonic signals using matlab build in fcn and step by step
+- generating basic harmonic signals using matlab build in fcn and step by step
 - saving and reading values from txt and csv files 
+Lab3: 
+- generating signals (Sa, exp) using matlab build in fcn and step by step
+- calculating basic signal parameters step by step (f_energia.m, f_min.m, f_max.m, f_sr.m)
+
