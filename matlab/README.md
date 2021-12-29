@@ -10,3 +10,8 @@ Lab4:
 * decomposition of the signal into even and odd parts 
 * 3D polos using plot3 
 * generating Fourier series signals 
+
+Lab5: 
+* convolution of signals using built in matlab fcn and step by step
+* calculing more signal parameters (moc.m wariancja.m odchylenie.m)
+
