@@ -15,3 +15,7 @@ Lab5:
 * convolution of signals using built in matlab fcn and step by step
 * calculing more signal parameters (moc.m wariancja.m odchylenie.m)
 
+Lab6:
+* vizualization convolution of signals using built in matlab fcn and step by step
+* correlation of two signals
+
