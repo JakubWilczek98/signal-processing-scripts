@@ -19,3 +19,7 @@ Lab6:
 * vizualization convolution of signals using built in matlab fcn and step by step
 * correlation of two signals
 
+Lab 7:
+* characteristics (frequency amplitude, phase amplitude, impulse response, step response) of systems by operator transmittance
+* characteristics (frequency amplitude, phase amplitude, impulse response, step response) of RC and RLC systems
+
