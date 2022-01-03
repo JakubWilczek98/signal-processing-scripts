@@ -23,3 +23,12 @@ Lab 7:
 * characteristics (frequency amplitude, phase amplitude, impulse response, step response) of systems by operator transmittance
 * characteristics (frequency amplitude, phase amplitude, impulse response, step response) of RC and RLC systems
 
+Lab 8 (three files lab8.m, lab8_2.m, lab8_3.m) - non-recursive digital filters:
+* creating low-pass, high-pass, band-pass, band-stop non-recursive digital filters using different algorithms
+    * window method (Hamming, Hanning, Cheby)
+    * sampling method in the frequency domain
+    * Remzes algorithm
+    * mean square optimization 
+* filtration using created filters
+* spectral analysis of received signals
+
