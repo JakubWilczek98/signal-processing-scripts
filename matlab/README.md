@@ -34,3 +34,12 @@ Part 8 (three files part8.m, part8_2.m, part8_3.m) - non-recursive digital filte
 * filtration using created filters
 * spectral analysis of received signals
 
+Part 9 (two files part9.m part9_3.m)
+* creating low-pass, high-pass, band-pass, band-stop recursive digital filters using different algorithms
+    * Butterworth filter
+    * Cheby I filter
+    * Cheby II filter
+    * Ellip filter
+* creating filters using bilinear transformation and Yule'a Walker method
+* filtration using created filters
+* spectral analysis of received signals
