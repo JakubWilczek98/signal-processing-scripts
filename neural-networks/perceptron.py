@@ -1,16 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mat4py import loadmat
+import timeit
 
 def heaviside(x):
     return 0 if x < 0 else 1
 
-def perceptron(input, output):
+def perceptron(input, output, eta):
     w0 = np.random.randn()
     w1 = np.random.randn()
     w2 = np.random.randn()
 
-    eta = 0.25
+    eta = eta
     er = 1
     it = 0
 
@@ -74,7 +75,8 @@ if __name__ == '__main__':
     #output = np.array([1,1,1,0])
 
     #Data from .mat file
-    '''
+
+
     data = loadmat('dane_perceptron.mat')
     data = [data['dane'][0], data['dane'][1], data['dane'][2]]
     input = []
@@ -83,13 +85,34 @@ if __name__ == '__main__':
 
     input = np.array(input)
     output = np.array(data[2])
-    '''
 
+    eta = np.linspace(0.001, 0.025, 50)
+    execution_times = []
+    iteration = 0
     #Executor
-    w0,w1,w2,results = perceptron(input,output)
-    print(results)
-    print(w0, w1, w2)
-    np.savetxt("results.csv", results, delimiter=",", fmt="%.2f")
-    plot_data(input,output,[w0,w1, w2])
+    for i in eta:
+        iteration += 1
+        iteration_time = 0
+        for j in range(100):
+            start = timeit.timeit()
+
+            w0,w1,w2,results = perceptron(input,output,i)
+            #print(results)
+            #print(w0, w1, w2)
+
+            #np.savetxt("results.csv", results, delimiter=",", fmt="%.2f")
+            #plot_data(input,output,[w0,w1, w2])
+            end = timeit.timeit()
+            iteration_time = iteration_time + abs(end - start)
+        print(iteration)
+        execution_times.append([i, iteration_time/100])
 
 
+    print(execution_times)
+    plt.figure()
+    for i in range(len(execution_times)):
+        plt.plot(execution_times[i][0],execution_times[i][1], 'o')
+    plt.xlabel("Eta")
+    plt.ylabel("Sredni czas dla 100 iteracji [s]")
+    plt.title("Badanie zaleznosci czasu liczenia od eta")
+    plt.show()
