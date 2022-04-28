@@ -34,6 +34,39 @@ def perceptron(input, output):
         results[1].append(er)
     return w0,w1,w2,results
 
+def plot_data(inputs,targets,weights):
+
+    def create_plot(line_x, line_y):
+        a = (line_y[1] - line_y[0]) / (line_x[1] - line_x[0])
+        new_line_x = np.linspace(-2, 2, 10)
+        new_line_y = []
+        for x in new_line_x:
+            new_line_y.append(a * (x - line_x[2]) + line_y[2])
+        plt.plot(new_line_x, new_line_y)
+
+        plt.axis([-0.1, 1.1, -0.1, 1.1])
+        plt.xlabel('P(1)')
+        plt.ylabel('P(2)')
+        plt.title('Vectors to be Classified')
+        plt.show()
+
+    plt.figure(figsize=(6,6))
+    plt.grid(True)
+
+    for input,target in zip(inputs,targets):
+        plt.plot(input[0],input[1],'ro' if (target == 1.0) else 'bo')
+
+    line_x = []
+    line_y = []
+    for i in np.linspace(np.amin(inputs[:,:1]),np.amax(inputs[:,:1])):
+        slope = -(weights[0]/weights[2])/(weights[0]/weights[1])
+        intercept = -weights[0]/weights[2]
+        y = (slope*i) + intercept
+        line_x.append(i)
+        line_y.append(y)
+
+    create_plot(line_x,line_y)
+
 if __name__ == '__main__':
     input = np.array([[0,0],[0,1],[1,0], [1,1]])
     output = np.array([1,1,1,0])
@@ -42,3 +75,4 @@ if __name__ == '__main__':
     print(results)
     print(w0, w1, w2)
 
+    plot_data(input,output,[w0,w1, w2])
