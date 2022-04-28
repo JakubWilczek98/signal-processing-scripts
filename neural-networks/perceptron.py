@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mat4py import loadmat
 
 def heaviside(x):
     return 0 if x < 0 else 1
@@ -68,11 +69,27 @@ def plot_data(inputs,targets,weights):
     create_plot(line_x,line_y)
 
 if __name__ == '__main__':
-    input = np.array([[0,0],[0,1],[1,0], [1,1]])
-    output = np.array([1,1,1,0])
+    #NAND
+    #input = np.array([[0,0],[0,1],[1,0], [1,1]])
+    #output = np.array([1,1,1,0])
 
+    #Data from .mat file
+    '''
+    data = loadmat('dane_perceptron.mat')
+    data = [data['dane'][0], data['dane'][1], data['dane'][2]]
+    input = []
+    for i in range(len(data[0])):
+        input.append([data[0][i],data[1][i]])
+
+    input = np.array(input)
+    output = np.array(data[2])
+    '''
+
+    #Executor
     w0,w1,w2,results = perceptron(input,output)
     print(results)
     print(w0, w1, w2)
-
+    np.savetxt("results.csv", results, delimiter=",", fmt="%.2f")
     plot_data(input,output,[w0,w1, w2])
+
+
